@@ -1,0 +1,114 @@
+PRINT 
+Train status
+----------
+  Current Speed: 0
+  Minimum Speed: 10
+  Maximum Speed: 50
+  Current Position: Stopped in New York
+  Current Number of Boxcars: 0
+  Maximum Number of Boxcars: 3
+
+ADDCAR PERSON 2
+ADDCAR CARGO 2
+LOAD  123-12-1234 John Doe 34
+LOAD  123-12-1234 John Doe 34
+  ERROR: Invalid item, item with id 123-12-1234 already exists.
+LOAD  123-12-4567 Sponge Bob 7
+LOAD  123-12-4568 Sponge Bob Jr. 7
+  ERROR: Adding another item would exceed the maximum capacity.
+LOAD  1 1200 12 12 12
+LOAD  2 600 24 12 24
+SPEEDUP  50
+  ERROR: The train has not departed yet.
+SPEEDUP  20
+  ERROR: The train has not departed yet.
+SLOWDOWN  5
+  ERROR: The train has not departed yet.
+PRINT 
+Train status
+----------
+  Current Speed: 0
+  Minimum Speed: 10
+  Maximum Speed: 50
+  Current Position: Stopped in New York
+  Current Number of Boxcars: 2
+  Maximum Number of Boxcars: 3
+  Boxcar: 0
+  ----------
+  Contents:
+    123-12-1234:   Name: John Doe        Age: 34
+    123-12-4567:   Name: Sponge Bob      Age: 7
+  Boxcar: 1
+  ----------
+  Contents:
+    1:   Weight: 1200       Dimensions: 12x12x12
+    2:   Weight: 600        Dimensions: 24x12x24
+
+UNLOAD 1 1
+UNLOAD 0 123-12-4567
+PRINT 
+Train status
+----------
+  Current Speed: 0
+  Minimum Speed: 10
+  Maximum Speed: 50
+  Current Position: Stopped in New York
+  Current Number of Boxcars: 2
+  Maximum Number of Boxcars: 3
+  Boxcar: 0
+  ----------
+  Contents:
+    123-12-1234:   Name: John Doe        Age: 34
+  Boxcar: 1
+  ----------
+  Contents:
+    2:   Weight: 600        Dimensions: 24x12x24
+
+REMOVECAR 1
+  ERROR: Specified boxcar is not empty.
+UNLOAD 1 1
+  ERROR: Item does not exist.
+UNLOAD 1 2
+DEPART Chicago
+SPEEDUP  50
+  ERROR: Speed cannot be increased; it would exceed the current train's maximum speed.
+SPEEDUP  20
+SLOWDOWN  5
+PRINT 
+Train status
+----------
+  Current Speed: 25
+  Minimum Speed: 10
+  Maximum Speed: 50
+  Current Position: Traveling from New York to Chicago
+  Current Number of Boxcars: 2
+  Maximum Number of Boxcars: 3
+  Boxcar: 0
+  ----------
+  Contents:
+    123-12-1234:   Name: John Doe        Age: 34
+  Boxcar: 1
+  ----------
+  Contents:
+    This boxcar is empty
+
+REMOVECAR 1
+  ERROR: The train has not arrived in Chicago yet.
+ARRIVE 
+REMOVECAR 1
+PRINT 
+Train status
+----------
+  Current Speed: 0
+  Minimum Speed: 10
+  Maximum Speed: 50
+  Current Position: Stopped in Chicago
+  Current Number of Boxcars: 1
+  Maximum Number of Boxcars: 3
+  Boxcar: 0
+  ----------
+  Contents:
+    123-12-1234:   Name: John Doe        Age: 34
+
+QUIT 
+Quitting...

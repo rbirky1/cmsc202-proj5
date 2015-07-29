@@ -1,0 +1,81 @@
+/**
+ * TODO 
+ * @author Rachael Birky <rbirky1@umbc.edu>
+ * @version ..12
+ * @project CMSC 202 - Fall 2012 - Lab 
+ * @section 02
+ */
+package lab11;
+
+/**
+ * @author rbirky1
+ *
+ */
+public class CD implements Media{
+	
+	private Integer id;
+	private String artist;
+	private String title;
+	private int year;
+	
+	public CD(Integer id, String artist, String title, int year){
+		this.id = id;
+		this.artist = artist;
+		this.title = title;
+		this.year = year;
+	}
+	
+	public <T> Comparable<T> getId(){
+		return (Comparable<T>) id;
+	}
+	
+	public String getCreator(){
+		return this.artist;
+	}
+	
+	public String getTitle(){
+		return this.title;
+	}
+	
+	public int getYear(){
+		return this.year;
+	}
+
+}
+
+
+
+/**
+ * TODO 
+ * @author Rachael Birky <rbirky1@umbc.edu>
+ * @version ..12
+ * @project CMSC 202 - Fall 2012 - Lab 
+ * @section 02
+ */
+package lab11;
+
+/**
+ * @author rbirky1
+ *
+ */
+public class CatalogItem<S extends Media> implements Comparable<CatalogItem<S>>{
+
+	private S media;
+	
+	public CatalogItem(S media){
+		this.media = media;
+	}
+	
+	public int compareTo(CatalogItem<S> otherMedia){
+		return media.getId().compareTo(otherMedia.media.getId());
+	}
+	
+	public String toString(){
+		return "\n"+media.getId()+": "+media.getCreator()+": "+media.getTitle()
+					+": "+media.getYear();
+	}
+
+}
+
+
+
